@@ -1,0 +1,25 @@
+name: Daily Hello World
+
+on:
+  schedule:
+    # Run every day at 09:17 UTC.
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Hello World
+        run: python hello_world.py
